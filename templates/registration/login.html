@@ -1,0 +1,84 @@
+<html>
+<title>Login</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<style>
+body {
+  background: rgb(230, 236, 240);
+  font-family: 'Roboto', sans-serif;
+}
+
+._lp {
+  margin: 100px auto;
+  background-color: #fff;
+  box-shadow: 0 0 225px rgba(255,255,255,0.5);
+  width: 400px;
+  order-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-image: initial;
+    text-align: center;
+}
+input
+{
+    height: 30px;
+    width: 20em;
+
+    background-color: #f5f8fa;
+    border-radius: 3px;
+    border: 1px solid #e6ecf0;
+    color: #14171a;
+    display: block;
+    font-size: 12px;
+    padding: 8px 32px 8px 12px;
+    transition: all .2s ease-in-out;
+}
+
+.save {
+  padding: 5px 15px;
+  background-color: #3a6538;
+  border-color: #034F03;
+  border: 0 none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  margin: 10px 150px;
+}
+table>tbody>tr>td>label {font-size: 14px; margin-left:35px}
+</style>
+<body>
+
+<div class="_lp">
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    <h2 style="font-family: 'Great Vibes', cursive; font-size:60px; margin-bottom:0px; color:#32a0cd"> My Restaurant</h2>
+    <h3 style="margin:0px"> Login </h3>
+
+    <form method="post" action="{% url 'login' %}">
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            <tr>
+                <td><input type="hidden" name="next" value="{{ next }}"/></td>
+            </tr>
+        </table>
+
+        <button type="submit" class="save"><i class="fa fa-sign-in" aria-hidden="true"></i> Submit</button>
+
+        {% csrf_token %}
+    </form>
+</div>
+  </body>
+  </html>
